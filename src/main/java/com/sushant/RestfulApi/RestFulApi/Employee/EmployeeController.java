@@ -22,30 +22,33 @@ public class EmployeeController {
 	}
 
 	@PostMapping("/adddemployees")
-	public List<Employee> AddProduct( @RequestBody List<Employee> employee) {
+	public List<Employee> AddProduct(@RequestBody List<Employee> employee) {
 		return employeeServices.saveEmployees(employee);
 	}
+
 	@GetMapping("/viewproduct/{id}")
 	public Employee viewEmployee(@PathVariable Integer id) {
 		return employeeServices.viewEmployeebyID(id);
 	}
+
 	@GetMapping("/viewAllEmployee")
 	public List<Employee> viewAllEmployee() {
 		return employeeServices.viewAllEmploye();
 	}
-/*	@GetMapping("/viewEmployeebyname/{name}")
-	public Employee viewEmployee(@PathVariable String name) {
-		return employeeServices.viewEmployeebyName(name);
-	}*/
+
+	/*
+	 * @GetMapping("/viewEmployeebyname/{name}") public Employee
+	 * viewEmployee(@PathVariable String name) { return
+	 * employeeServices.viewEmployeebyName(name); }
+	 */
 	@DeleteMapping("/deleteEmployee/{id}")
 	public String deleteEmployee(@PathVariable Integer id) {
 		return employeeServices.DeleteByID(id);
 	}
-	@PutMapping("/updateEmployee")
-	public Employee updateEmployee(@RequestBody Employee emp) {
-		return employeeServices.UpdateEmployee(emp);
+
+	@PutMapping("/updateEmployee/{id}")
+	public Employee updateEmployee(@RequestBody Employee emp, @PathVariable Integer id) {
+		return employeeServices.UpdateEmployee(emp,id);
 	}
-	
-	
 
 }
